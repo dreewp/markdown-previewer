@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Markdown Previewer</title>
+  <style>
+    body {
+      width: 100vw;
+      height: 100vh;
+      margin: 0;
+    }
+
+    #heading {
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      color: cornsilk;
+      text-decoration: underline;
+      text-shadow: 0 0 2px black;
+    }
+
+    #app {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100vh;
+      background-color: lightslategray;
+    }
+
+    #markdown-container {
+      display: flex;
+      width: 90%;
+      height: 85%;
+      background-color: whitesmoke;
+      box-shadow: 0 0 5px black;
+      border-radius: 10px;
+    }
+
+    #markdown-text {
+      flex: 1;
+      background-color: white;
+      margin: 12px 6px 12px 12px;
+      border: 1px solid tan;
+      box-shadow: 0 0 1px black;
+      resize: none;
+      outline: none;
+    }
+
+    #content {
+      flex: 1;
+      background-color: white;
+      margin: 12px 12px 12px 6px;
+      border: 1px solid tan;
+      box-shadow: 0 0 1px black;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <h1 id="heading">Markdown Previewer</h1>
+    <div id="markdown-container">
+      <textarea id="markdown-text"></textarea>
+      <div id="content"></div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script>
+    const markdownPreview = document.getElementById('content');
+    function generateMarkdown(e) {
+      markdownPreview.innerHTML = marked(e.target.value);
+    }
+    document.getElementById('markdown-text').addEventListener('input', generateMarkdown);
+  </script>
+</body>
+
+</html>
