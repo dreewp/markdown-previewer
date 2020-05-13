@@ -69,10 +69,19 @@
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script>
     const markdownPreview = document.getElementById('content');
+    const markdownTextarea = document.getElementById('markdown-text');
+
+    // load saved text
+    const savedText = localStorage.getItem('markdown');
+    markdownPreview.innerHTML = marked(savedText);
+    markdownTextarea.value = savedText;
+
     function generateMarkdown(e) {
-      markdownPreview.innerHTML = marked(e.target.value);
+      const text = e.target.value;
+      markdownPreview.innerHTML = marked(text);
+      localStorage.setItem('markdown', text);
     }
-    document.getElementById('markdown-text').addEventListener('input', generateMarkdown);
+    markdownTextarea.addEventListener('input', generateMarkdown);
   </script>
 </body>
 
